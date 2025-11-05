@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+db_data/
+backend/staticfiles/
+node_modules/
+dist/
+.vscode/
