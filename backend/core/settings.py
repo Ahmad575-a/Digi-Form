@@ -1,15 +1,21 @@
 from pathlib import Path
 import os
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY','insecure')
-DEBUG = os.getenv('DJANGO_DEBUG','False') == 'True'
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS','*').split(',')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'insecure')
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
 
 INSTALLED_APPS = [
-    'django.contrib.admin','django.contrib.auth','django.contrib.contenttypes',
-    'django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles',
-    'rest_framework','corsheaders',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -24,17 +30,34 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'core.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
 WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DJANGO_DB_NAME','digiform'),
-        'USER': os.getenv('DJANGO_DB_USER','digiform'),
-        'PASSWORD': os.getenv('DJANGO_DB_PASSWORD','digiformpwd'),
-        'HOST': os.getenv('DJANGO_DB_HOST','localhost'),
-        'PORT': os.getenv('DJANGO_DB_PORT','3306'),
-        'OPTIONS': {'charset':'utf8mb4'},
+        'NAME': os.getenv('DJANGO_DB_NAME', 'digiform'),
+        'USER': os.getenv('DJANGO_DB_USER', 'digiform'),
+        'PASSWORD': os.getenv('DJANGO_DB_PASSWORD', 'digiformpwd'),
+        'HOST': os.getenv('DJANGO_DB_HOST', 'localhost'),
+        'PORT': os.getenv('DJANGO_DB_PORT', '3306'),
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 
@@ -47,5 +70,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = os.getenv('DJANGO_CORS_ORIGINS','').split(',') if os.getenv('DJANGO_CORS_ORIGINS') else []
+CORS_ALLOWED_ORIGINS = os.getenv('DJANGO_CORS_ORIGINS', '').split(',') if os.getenv('DJANGO_CORS_ORIGINS') else []
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
