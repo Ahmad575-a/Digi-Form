@@ -5,3 +5,4 @@ backend/staticfiles/
 node_modules/
 dist/
 .vscode/
+.env
