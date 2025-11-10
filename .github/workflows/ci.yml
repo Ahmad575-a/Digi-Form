@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: ["development","main"]
+  pull_request:
+    branches: ["development"]
+
+jobs:
+  backend-migrate:
+    runs-on: ubuntu-latest
+    env:
+      DJANGO_SECRET_KEY: test
+      DJANGO_DEBUG: True
+      DJANGO_DB_HOST: 127.0.0.1
+      DJANGO_DB_PORT: 3306
+      DJANGO_DB_NAME: testdb
+      DJANGO_DB_USER: root
+      DJANGO_DB_PASSWORD: rootpwd
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: testdb
+          MYSQL_ROOT_PASSWORD: rootpwd
+        ports: ["3306:3306"]
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -prootpwd"
+          --health-interval=5s --health-timeout=5s --health-retries=20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Install deps
+        run: pip install -r backend/requirements.txt
+      - name: Migrate
+        working-directory: backend
+        run: python manage.py migrate --noinput

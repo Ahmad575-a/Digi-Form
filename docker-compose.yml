@@ -1,0 +1,32 @@
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: ${DJANGO_DB_NAME:-digiform}
+      MYSQL_USER: ${DJANGO_DB_USER:-digiform}
+      MYSQL_PASSWORD: ${DJANGO_DB_PASSWORD:-digiformpwd}
+      MYSQL_ROOT_PASSWORD: rootpwd
+    ports: ["3306:3306"]
+    volumes: [ "db_data:/var/lib/mysql" ]
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -prootpwd"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+
+  backend:
+    build: ./backend
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports: ["8000:8000"]
+    volumes: [ "./backend:/app" ]
+    command: ["/app/entrypoint.sh"]
+
+  frontend:
+    build: ./frontend
+    ports: ["5173:80"]
+
+volumes:
+  db_data:
