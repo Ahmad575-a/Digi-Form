@@ -18,6 +18,12 @@ docker compose up --build
 **Frontend:** [http://localhost:5173](http://localhost:5173)
 **Health Check:** [http://localhost:8000/health/](http://localhost:8000/health/)
 
+**API Documentation:**
+
+**Swagger UI:** [http://localhost:8000/api/schema/swagger/](http://localhost:8000/api/schema/swagger/)
+
+**Redoc:** [http://localhost:8000/api/schema/redoc/](http://localhost:8000/api/schema/redoc/)
+
 ---
 
 ## Backend Commands
