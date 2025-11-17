@@ -1,4 +1,6 @@
 # Digi-Form
+![Build Status](https://github.com/Ahmad575-a/Digi-Form/actions/workflows/ci.yml/badge.svg)
+
 
 ## Tech Stack
 Built with **Django**, **MySQL**, and **React (TypeScript)** using Docker.

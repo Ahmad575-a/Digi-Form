@@ -17,7 +17,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'users',
-    'drf_spectacular', 
+    'drf_spectacular',
+    'formsapp',
 ]
 
 MIDDLEWARE = [
