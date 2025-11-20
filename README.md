@@ -1,4 +1,6 @@
 # Digi-Form
+![Build Status](https://github.com/Ahmad575-a/Digi-Form/actions/workflows/ci.yml/badge.svg)
+
 
 ## Tech Stack
 Built with **Django**, **MySQL**, and **React (TypeScript)** using Docker.
@@ -17,6 +19,12 @@ docker compose up --build
 **Backend:** [http://localhost:8000](http://localhost:8000)
 **Frontend:** [http://localhost:5173](http://localhost:5173)
 **Health Check:** [http://localhost:8000/health/](http://localhost:8000/health/)
+
+**API Documentation:**
+
+**Swagger UI:** [http://localhost:8000/api/schema/swagger/](http://localhost:8000/api/schema/swagger/)
+
+**Redoc:** [http://localhost:8000/api/schema/redoc/](http://localhost:8000/api/schema/redoc/)
 
 ---
 
