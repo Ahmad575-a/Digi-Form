@@ -39,3 +39,27 @@ class Field(models.Model):
 
     def __str__(self):
         return f'{self.form.title}:{self.name}'
+
+class Submission(models.Model):
+    form = models.ForeignKey(Form, on_delete=models.CASCADE, related_name='submissions')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='submissions')
+    submitted_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-submitted_at']
+
+    def __str__(self):
+        return f'Submission #{self.pk} by {self.user} for {self.form}'
+
+
+class Answer(models.Model):
+    submission = models.ForeignKey(Submission, on_delete=models.CASCADE, related_name='answers')
+    field = models.ForeignKey(Field, on_delete=models.CASCADE, related_name='answers')
+    value = models.TextField(blank=True, default='')
+
+    class Meta:
+        unique_together = ('submission', 'field')
+
+    def __str__(self):
+        return f'{self.submission_id}:{self.field.name}'
