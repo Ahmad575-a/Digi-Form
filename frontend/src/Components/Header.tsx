@@ -12,7 +12,8 @@ const Header: React.FC = () => {
         <div className="df-logo-pill">
             <img src={logo} alt="Logo" className="df-logo-img" />
         </div>
-        <span className="df-brand">DigiForm</span>
+        <span className="df-brand" onClick={() => navigate('/')}>
+            DigiForm</span>
       </div>
 
       
