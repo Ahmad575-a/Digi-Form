@@ -1,16 +1,24 @@
 /* src/Components/RegisterForm.css */
 
 .register-wrapper {
+  min-height: 100vh; 
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),  /* halbtransparentes Overlay */
+    url('/background.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: 4rem 1.5rem;
+  align-items: center;
+  padding: 40px;
 }
 
 .register-card {
   width: 100%;
   max-width: 520px;
-  background-color: #ffffff;
+  background-color: #ffffff89;
   border-radius: 16px;
   padding: 2.5rem 2rem;
   box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);

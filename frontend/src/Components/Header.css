@@ -1,13 +1,19 @@
 
 .df-header {
   width: auto;
-  background-color: #c8ac898d;
+  background: linear-gradient(
+    90deg,
+    #f3eeebab 0%,
+    #dbcca466 50%,
+    #f3eeebab 100%
+  );
   height: 96px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 3rem;
   box-sizing: border-box;
+  border-bottom: 0.7px solid #422105b7;
 }
 
 
