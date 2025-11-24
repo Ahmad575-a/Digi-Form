@@ -17,7 +17,7 @@ const LoginChoice: React.FC = () => {
         <h1>Anmelden oder registrieren?</h1>
 
         <div className="login-buttons">
-          <button className="login-btn">Ich habe bereits ein Profil</button>
+          <button className="login-btn"onClick={() => navigate('/login')}>Ich habe bereits ein Profil</button>
           <button className="login-btn" onClick={() => navigate('/register')} >Ich bin hier neu</button>
         </div>
       </div>

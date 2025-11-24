@@ -74,7 +74,7 @@
 }
 
 .df-logo-img {
-  height: 160px;      /* passe die Größe an deine PNG an */
+  height: 220px;      /* passe die Größe an deine PNG an */
   width: auto;
   object-fit: contain;
   display: block;

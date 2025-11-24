@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import logo from '../assets/digi.png';
+import logo from '../assets/digi.svg';
 import { useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {

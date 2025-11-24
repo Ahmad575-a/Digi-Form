@@ -31,12 +31,12 @@
 
 /* Hero-Bild links */
 .hero-image {
-  width: 360px;          /* perfekte Größe */
+  width: 400px;      
   height: auto;
   object-fit: cover;
   margin-left: 1rem;     /* Abstand vom Rand */
-  box-shadow: 0 25px 30px rgba(0,0,0,0.08);  /* leichter modern shadow */
-  border: 0.7px solid #422105b7; 
+  box-shadow: 0 25px 30px rgba(0,0,0,0.08);  
+  border: 0.7px solid #dcccbeb7; 
 }
 
 /* Text rechts */
@@ -54,7 +54,7 @@
 
 .hero-text p {
   font-size: 1.2rem;
-  color: #4b5563;
+  color: #4a4c4e;
   line-height: 1.6;
 }
 

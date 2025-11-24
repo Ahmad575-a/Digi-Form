@@ -7,6 +7,7 @@ import Header from './Components/Header';
 import Hero from './Components/Hero';
 import LoginChoice from './Components/LoginChoice';
 import RegisterForm from './Components/RegisterForm';
+import LoginForm from './Components/LoginForm';
 import Dashboard from './Components/Dashboard';
 
 
@@ -30,6 +31,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Hero />} />
         <Route path="/anmelden" element={<LoginChoice />} />
         <Route path="/register" element={<RegisterForm />} />
+        <Route path="/login" element={<LoginForm />} />
         <Route
           path="/dashboard"
           element={
