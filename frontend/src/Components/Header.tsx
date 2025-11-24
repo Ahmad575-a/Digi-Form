@@ -1,12 +1,13 @@
-// src/Components/Header.tsx
 import React from 'react';
 import './Header.css';
 import logo from '../assets/digi.png';
+import { useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <header className="df-header">
-      {/* Links: Logo + Titel */}
+      
       <div className="df-left">
         <div className="df-logo-pill">
             <img src={logo} alt="Logo" className="df-logo-img" />
@@ -14,7 +15,7 @@ const Header: React.FC = () => {
         <span className="df-brand">DigiForm</span>
       </div>
 
-      {/* Rechts: Links + Button */}
+      
       <div className="df-right">
         <button className="df-link" type="button">
           Hinweise
@@ -22,7 +23,11 @@ const Header: React.FC = () => {
         <button className="df-link" type="button">
           Datenschutz
         </button>
-        <button className="df-login-pill" type="button">
+        <button
+          className="df-login-pill"
+          type="button"
+          onClick={() => navigate('/anmelden')}
+        >
           Anmelden
         </button>
       </div>
