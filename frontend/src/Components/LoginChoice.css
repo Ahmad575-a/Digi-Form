@@ -1,9 +1,16 @@
 .login-choice {
-  flex: 1;
+  min-height: 100vh; 
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),  /* halbtransparentes Overlay */
+    url('/background.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4rem 1.5rem;
+  padding: 40px;
 }
 
 .login-card {
@@ -14,7 +21,7 @@
   padding: 4rem 2rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   text-align: center;
-  background-color: transparent;
+  background-color: #ffffff89;
 }
 
 .login-card h1 {
