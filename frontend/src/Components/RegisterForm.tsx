@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './RegisterForm.css';
 
@@ -20,7 +20,12 @@ const RegisterForm: React.FC = () => {
     role: '',
     class_name: '',
   });
-    const navigate = useNavigate();
+
+  useEffect(() => {
+  document.title = "DigiForm – Registrierung";
+}, []);
+
+  const navigate = useNavigate();
 
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 

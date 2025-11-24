@@ -7,7 +7,7 @@
   justify-content: center;
   gap: 3rem;
   margin-top: 3rem;
-  background-color: #8cbf986b;
+  background-color: #c8ac898d;
   box-sizing: border-box;
 }
 
@@ -28,6 +28,9 @@
   object-fit: cover;
   margin-left: 1rem;     /* Abstand vom Rand */
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);  /* leichter modern shadow */
+  border-width: 0px 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
 }
 
 /* Text rechts */

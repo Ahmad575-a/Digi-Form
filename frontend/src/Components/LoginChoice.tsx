@@ -1,8 +1,15 @@
 import React from 'react';
-import './LoginChoice.css';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
+import './LoginChoice.css';
 
 const LoginChoice: React.FC = () => {
+
+    useEffect(() => {
+      document.title = "DigiForm – Anmeldung";
+    }, []);
+
     const navigate = useNavigate();
   return (
     <main className="login-choice">
