@@ -1,0 +1,64 @@
+
+/* Hero Bereich */
+.hero-section {
+  width: 100%;                 /* volle Fensterbreite */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 3rem;
+  background-color: #8cbf986b;
+  box-sizing: border-box;
+}
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1200px;       /* Inhalt nicht endlos breit */
+  margin: 0 auto;          /* zentriert */
+  padding: 0 2rem; 
+  width: 100%;
+}
+
+/* Hero-Bild links */
+.hero-image {
+  width: 360px;          /* perfekte Größe */
+  height: auto;
+  object-fit: cover;
+  margin-left: 1rem;     /* Abstand vom Rand */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);  /* leichter modern shadow */
+}
+
+/* Text rechts */
+.hero-text {
+  flex: 1;
+  text-align: left;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.hero-text h1 {
+  font-size: 2.4rem;
+  color: #111827;
+  font-weight: 500;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image {
+    width: 80%;
+    margin-left: 0;
+  }
+}
+
