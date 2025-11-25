@@ -1,49 +1,50 @@
-
 /* Hero Bereich */
 .hero-section {
-  width: 100%;                 /* volle Fensterbreite */
+  width: 100%; /* volle Fensterbreite */
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 3rem;
   margin-top: 2rem;
-  min-height: 100vh; 
-  background: 
-    linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),  /* halbtransparentes Overlay */
-    url('/background.jpg'); 
+  min-height: 100vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
+    ),
+    /* halbtransparentes Overlay */ url("/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   padding: 40px;
   box-sizing: border-box;
-  border: 0.7px solid #422105b7;;
+  border: 0.7px solid #422105b7;
 }
 
 .hero-inner {
   display: flex;
   align-items: center;
   gap: 3rem;
-  max-width: 1200px;       /* Inhalt nicht endlos breit */
-  margin: 0 auto;          /* zentriert */
-  padding: 0 2rem; 
+  max-width: 1200px; /* Inhalt nicht endlos breit */
+  margin: 0 auto; /* zentriert */
+  padding: 0 2rem;
   width: 100%;
 }
 
 /* Hero-Bild links */
 .hero-image {
-  width: 400px;      
+  width: 400px;
   height: auto;
   object-fit: cover;
-  margin-left: 1rem;     /* Abstand vom Rand */
-  box-shadow: 0 25px 30px rgba(0,0,0,0.08);  
-  border: 0.7px solid #dcccbeb7; 
+  margin-left: 1rem; /* Abstand vom Rand */
+  box-shadow: 0 25px 30px rgba(0, 0, 0, 0.08);
+  border: 0.7px solid #dcccbeb7;
 }
 
 /* Text rechts */
 .hero-text {
   flex: 1;
   text-align: left;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .hero-text h1 {
@@ -70,4 +71,3 @@
     margin-left: 0;
   }
 }
-

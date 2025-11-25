@@ -1,22 +1,31 @@
-import React from 'react';
-import './Header.css';
-import logo from '../assets/digi.svg';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import "./Header.css";
+import logo from "../assets/digi.svg";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Components/AuthContext";
 
 const Header: React.FC = () => {
+  const { isAuthenticated, logout } = useAuth();
+
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    // sauberer Redirect, ohne Back ins Dashboard
+    navigate("/anmelden", { replace: true });
+  };
+
   return (
     <header className="df-header">
-      
       <div className="df-left">
         <div className="df-logo-pill">
-            <img src={logo} alt="Logo" className="df-logo-img" />
+          <img src={logo} alt="Logo" className="df-logo-img" />
         </div>
-        <span className="df-brand" onClick={() => navigate('/')}>
-            DigiForm</span>
+        <span className="df-brand" onClick={() => navigate("/")}>
+          DigiForm
+        </span>
       </div>
 
-      
       <div className="df-right">
         <button className="df-link" type="button">
           Hinweise
@@ -27,9 +36,9 @@ const Header: React.FC = () => {
         <button
           className="df-login-pill"
           type="button"
-          onClick={() => navigate('/anmelden')}
+          onClick={isAuthenticated ? handleLogout : () => navigate("/anmelden")}
         >
-          Anmelden
+          {isAuthenticated ? "Ausloggen" : "Anmelden"}
         </button>
       </div>
     </header>

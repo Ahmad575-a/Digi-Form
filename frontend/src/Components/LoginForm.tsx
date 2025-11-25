@@ -1,6 +1,7 @@
-import React, { useState, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
-import './LoginForm.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./LoginForm.css";
+import { useAuth } from "../Components/AuthContext";
 
 interface loginFormData {
   username: string;
@@ -9,19 +10,24 @@ interface loginFormData {
 
 const LoginForm: React.FC = () => {
   const [formData, setFormData] = useState<loginFormData>({
-    username: '',
-    password: '',
+    username: "",
+    password: "",
   });
 
-  useEffect(() => {
-  document.title = "DigiForm – Anmeldung";
-}, []);
-
+  const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "DigiForm – Anmeldung";
+
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated, navigate]);
 
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-  console.log('API_BASE_URL =', API_BASE_URL);
+  console.log("API_BASE_URL =", API_BASE_URL);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -32,7 +38,7 @@ const LoginForm: React.FC = () => {
   ) => {
     const { name, value } = event.target;
 
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -45,36 +51,36 @@ const LoginForm: React.FC = () => {
     setErrorMessage(null);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/login/`, { 
-        method: 'POST',
+      const response = await fetch(`${API_BASE_URL}/api/auth/login/`, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
         const text = await response.text();
-        throw new Error(text || 'Registrierung fehlgeschlagen');
+        throw new Error(text || "Anmeldung fehlgeschlagen");
       }
 
-        const data = await response.json();
-        //JWT speichern
-        localStorage.setItem('access', data.access);
-        localStorage.setItem('refresh', data.refresh);
+      const data = await response.json();
+      //JWT speichern
+      login(data.access, data.refresh);
 
-        //redirect auf Dashboard
-        navigate('/dashboard');
+      //redirect auf Dashboard
+      navigate("/dashboard");
 
-
-      setSuccessMessage('Anmeldung erfolgreich.');
+      setSuccessMessage("Anmeldung erfolgreich.");
       setFormData({
-        username: '',
-        password: '',
+        username: "",
+        password: "",
       });
     } catch (err) {
       console.error(err);
-      setErrorMessage('Anmeldung fehlgeschlagen. Bitte überprüfe deine Eingaben und versuche es erneut.');
+      setErrorMessage(
+        "Anmeldung fehlgeschlagen. Bitte überprüfe deine Eingaben und versuche es erneut."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -84,7 +90,7 @@ const LoginForm: React.FC = () => {
     <main className="login-wrapper">
       <div className="login-card">
         <h1>Anmelden</h1>
-    
+
         <form className="login-form" onSubmit={handleSubmit}>
           <label className="login-field">
             <span>Benutzername</span>
@@ -108,19 +114,15 @@ const LoginForm: React.FC = () => {
             />
           </label>
 
-          {successMessage && (
-            <p className="login-success">{successMessage}</p>
-          )}
-          {errorMessage && (
-            <p className="login-error">{errorMessage}</p>
-          )}
+          {successMessage && <p className="login-success">{successMessage}</p>}
+          {errorMessage && <p className="login-error">{errorMessage}</p>}
 
           <button
             className="login-submit"
             type="submit"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Wird gesendet…' : 'Anmelden'}
+            {isSubmitting ? "Wird gesendet…" : "Anmelden"}
           </button>
         </form>
       </div>

@@ -1,8 +1,10 @@
 .login-choice {
-  min-height: 100vh; 
-  background: 
-    linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),  /* halbtransparentes Overlay */
-    url('/background.jpg'); 
+  min-height: 100vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
+    ),
+    /* halbtransparentes Overlay */ url("/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -49,9 +51,18 @@
   font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .login-btn:hover {
   background-color: #3a3a3a;
+}
+
+.logout-message {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  background: #e6f4ff;
+  color: #000000;
+  font-size: 0.9rem;
 }
