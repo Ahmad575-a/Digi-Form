@@ -27,12 +27,22 @@ const Header: React.FC = () => {
       </div>
 
       <div className="df-right">
-        <button className="df-link" type="button">
+        <a
+          className="df-link"
+          href="/Hinweise.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Hinweise
-        </button>
-        <button className="df-link" type="button">
+        </a>
+        <a
+          className="df-link"
+          href="/Datenschutz.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Datenschutz
-        </button>
+        </a>
         <button
           className="df-login-pill"
           type="button"
