@@ -1,7 +1,13 @@
-from rest_framework import viewsets, permissions, filters
+from rest_framework import viewsets, permissions, filters, mixins
+from django.shortcuts import get_object_or_404
+
 from .models import Form, Submission
 from .serializers import FormSerializer, SubmissionSerializer
-from .permissions import IsTeacherOrAdminOrReadOnly, IsOwnerOrTeacherAdmin
+from .permissions import (
+    IsTeacherOrAdminOrReadOnly,
+    IsOwnerOrTeacherAdmin,
+    IsTeacherOrAdmin,
+)
 
 
 class FormViewSet(viewsets.ModelViewSet):
@@ -45,3 +51,28 @@ class SubmissionViewSet(viewsets.ModelViewSet):
 
         # students see only their own
         return qs.filter(user=user)
+
+
+class FormSubmissionListView(mixins.ListModelMixin, viewsets.GenericViewSet):
+    """
+    Read-only listing of submissions for a specific form.
+
+    - Only teachers/admins can access this endpoint.
+    - Uses the same SubmissionSerializer as SubmissionViewSet.
+    """
+
+    serializer_class = SubmissionSerializer
+    permission_classes = [permissions.IsAuthenticated, IsTeacherOrAdmin]
+
+    def get_queryset(self):
+        form_id = self.kwargs['form_id']
+        # ensure the form exists and 404 if not
+        get_object_or_404(Form, pk=form_id)
+
+        return (
+            Submission.objects
+            .filter(form_id=form_id)
+            .select_related('user', 'form')
+            .prefetch_related('answers', 'answers__field')
+            .order_by('-submitted_at')
+        )
