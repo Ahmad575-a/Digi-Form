@@ -11,6 +11,8 @@ import LoginForm from "./Components/LoginForm";
 import Dashboard from "./Components/Dashboard";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import { AuthProvider } from "./Components/AuthContext";
+import HinweisePage from "./Components/HinweisePage";
+import DatenschutzPage from "./Components/DatenschutzPage";
 
 const App: React.FC = () => {
   return (
@@ -30,6 +32,8 @@ const App: React.FC = () => {
               </ProtectedRoute>
             }
           />
+          <Route path="/hinweise" element={<HinweisePage />} />
+          <Route path="/datenschutz" element={<DatenschutzPage />} />
         </Routes>
       </div>
     </AuthProvider>

@@ -1,8 +1,8 @@
-import React, { useState, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
-import './RegisterForm.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./RegisterForm.css";
 
-type Role = '' | 'student' | 'teacher';; 
+type Role = "" | "student" | "teacher";
 
 interface RegisterFormData {
   username: string;
@@ -14,22 +14,22 @@ interface RegisterFormData {
 
 const RegisterForm: React.FC = () => {
   const [formData, setFormData] = useState<RegisterFormData>({
-    username: '',
-    email: '',
-    password: '',
-    role: '',
-    class_name: '',
+    username: "",
+    email: "",
+    password: "",
+    role: "",
+    class_name: "",
   });
 
   useEffect(() => {
-  document.title = "DigiForm – Registrierung";
-}, []);
+    document.title = "DigiForm – Registrierung";
+  }, []);
 
   const navigate = useNavigate();
 
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-  console.log('API_BASE_URL =', API_BASE_URL);
+  console.log("API_BASE_URL =", API_BASE_URL);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -40,7 +40,7 @@ const RegisterForm: React.FC = () => {
   ) => {
     const { name, value } = event.target;
 
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -53,39 +53,40 @@ const RegisterForm: React.FC = () => {
     setErrorMessage(null);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/register/`, { 
-        method: 'POST',
+      const response = await fetch(`${API_BASE_URL}/api/auth/register/`, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
         const text = await response.text();
-        throw new Error(text || 'Registrierung fehlgeschlagen');
+        throw new Error(text || "Registrierung fehlgeschlagen");
       }
 
-        const data = await response.json();
-        //JWT speichern
-        localStorage.setItem('access', data.access);
-        localStorage.setItem('refresh', data.refresh);
+      const data = await response.json();
+      //JWT speichern
+      localStorage.setItem("access", data.access);
+      localStorage.setItem("refresh", data.refresh);
 
-        //redirect auf Dashboard
-        navigate('/dashboard');
+      //redirect auf Dashboard
+      navigate("/dashboard");
 
-
-      setSuccessMessage('Registrierung erfolgreich.');
+      setSuccessMessage("Registrierung erfolgreich.");
       setFormData({
-        username: '',
-        email: '',
-        password: '',
-        role: 'student',
-        class_name: '',
+        username: "",
+        email: "",
+        password: "",
+        role: "student",
+        class_name: "",
       });
     } catch (err) {
       console.error(err);
-      setErrorMessage('Registrierung fehlgeschlagen. Bitte überprüfe deine Eingaben und versuche es erneut.');
+      setErrorMessage(
+        "Registrierung fehlgeschlagen. Bitte überprüfe deine Eingaben und versuche es erneut."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -135,19 +136,21 @@ const RegisterForm: React.FC = () => {
 
           <label className="register-field">
             <span>Rolle</span>
-                <div className="register-select-wrapper">
-                    <select
-                        name="role"
-                        value={formData.role}
-                        onChange={handleChange}
-                    className="register-select"
-                    >
-        <option value="" disabled hidden>Rolle auswählen…</option>
-      <option value="student">Schüler:in</option>
-      <option value="teacher">Lehrer:in</option>
-    </select>
-  </div>
-</label>
+            <div className="register-select-wrapper">
+              <select
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                className="register-select"
+              >
+                <option value="" disabled hidden>
+                  Rolle auswählen…
+                </option>
+                <option value="student">Schüler:in</option>
+                <option value="teacher">Lehrer:in</option>
+              </select>
+            </div>
+          </label>
           <label className="register-field">
             <span>Klassenname</span>
             <input
@@ -162,16 +165,14 @@ const RegisterForm: React.FC = () => {
           {successMessage && (
             <p className="register-success">{successMessage}</p>
           )}
-          {errorMessage && (
-            <p className="register-error">{errorMessage}</p>
-          )}
+          {errorMessage && <p className="register-error">{errorMessage}</p>}
 
           <button
             className="register-submit"
             type="submit"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Wird gesendet…' : 'Registrieren'}
+            {isSubmitting ? "Wird gesendet…" : "Registrieren"}
           </button>
         </form>
       </div>

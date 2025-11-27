@@ -4,6 +4,9 @@ import logo from "../assets/digi.svg";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Components/AuthContext";
 
+import HinweiseButton from "./HinweiseButton";
+import DatenschutzButton from "./DatenschutzButton";
+
 const Header: React.FC = () => {
   const { isAuthenticated, logout } = useAuth();
 
@@ -27,22 +30,8 @@ const Header: React.FC = () => {
       </div>
 
       <div className="df-right">
-        <a
-          className="df-link"
-          href="/Hinweise.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Hinweise
-        </a>
-        <a
-          className="df-link"
-          href="/Datenschutz.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Datenschutz
-        </a>
+        <HinweiseButton />
+        <DatenschutzButton />
         <button
           className="df-login-pill"
           type="button"
