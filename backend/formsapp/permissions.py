@@ -22,3 +22,14 @@ class IsOwnerOrTeacherAdmin(BasePermission):
         if getattr(user, 'role', 'student') in ('teacher', 'admin'):
             return True
         return obj.user_id == user.id
+
+
+class IsTeacherOrAdmin(BasePermission):
+    """
+    Only teachers and admins are allowed (no access for students).
+    """
+    def has_permission(self, request, view):
+        user = request.user
+        if not user or not user.is_authenticated:
+            return False
+        return getattr(user, 'role', 'student') in ('teacher', 'admin')
