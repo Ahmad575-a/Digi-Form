@@ -1,7 +1,7 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  display: contents;
+  justify-items: row;
   text-align: center;
 }
 
@@ -12,7 +12,7 @@
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #070fadaa);
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
@@ -39,4 +39,15 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Gesamter Inhaltsbereich */
+.app-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
 }

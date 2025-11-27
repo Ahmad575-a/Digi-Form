@@ -17,7 +17,9 @@ docker compose up --build
 ````
 
 **Backend:** [http://localhost:8000](http://localhost:8000)
+
 **Frontend:** [http://localhost:5173](http://localhost:5173)
+
 **Health Check:** [http://localhost:8000/health/](http://localhost:8000/health/)
 
 **API Documentation:**
