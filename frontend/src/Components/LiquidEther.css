@@ -1,0 +1,23 @@
+.liquid-ether-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #c01b1b;
+}
+
+/* WebGL-Canvas-Hintergrund */
+.liquid-ether-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dein Inhalt (Hero) oben drauf */
+.liquid-ether-content {
+  position: relative;
+  z-index: 1;
+}
