@@ -51,3 +51,28 @@
   width: 100%;
   box-sizing: border-box;
 }
+
+.info-page {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  text-align: left;
+}
+
+.info-page h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.info-image {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto 2rem auto;
+  border-radius: 16px;
+}
+
+.info-text {
+  font-size: 1rem;
+  line-height: 1.6;
+}

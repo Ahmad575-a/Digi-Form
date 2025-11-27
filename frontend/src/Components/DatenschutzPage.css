@@ -1,0 +1,87 @@
+.ds-page {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1.5rem 4rem;
+}
+
+.ds-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.ds-accordion {
+  border-top: 1px solid #e0e0e0;
+}
+
+.ds-section {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ds-section-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.ds-section-header:hover {
+  background: #f7f9ff;
+}
+
+.ds-section-marker {
+  width: 6px;
+  height: 24px;
+  background: #91662e;
+  border-radius: 3px;
+}
+
+.ds-section-title {
+  flex: 1;
+  font-weight: 600;
+}
+
+.ds-title {
+  font-weight: 400;
+}
+
+.ds-section-icon {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.ds-section-body {
+  padding: 0 0 1.5rem 1.75rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.ds-section-body ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.ds-section-body a {
+  color: #0f4699;
+  text-decoration: underline;
+}
+
+.ds-section-body ul {
+  padding-left: 1.2rem;
+}
+
+.ds-section-body li {
+  list-style: disc;
+  display: list-item;
+  margin: 0.25rem 0;
+}
+
+.ds-section-body li a,
+.ds-section-body li {
+  white-space: nowrap;
+}
