@@ -4,15 +4,13 @@ import "./Hero.css";
 import heroImage from "../assets/heroImage.jpg";
 
 const Hero: React.FC = () => {
-
   useEffect(() => {
-  document.title = "DigiForm – Home";
-}, []);
+    document.title = "DigiForm – Home";
+  }, []);
 
   return (
     <section className="hero-section">
       <div className="hero-inner">
-
         <img src={heroImage} alt="Hero" className="hero-image" />
 
         <div className="hero-text">
@@ -22,7 +20,6 @@ const Hero: React.FC = () => {
             herunterladen und digital unterschreiben.
           </p>
         </div>
-
       </div>
     </section>
   );
