@@ -1,11 +1,11 @@
 import React from "react";
-import "./Header.css";
-import logo from "../assets/digi.svg";
+import "../Styles/Header.css";
+import logo from "../../assets/digi.svg";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../Components/AuthContext";
+import { useAuth } from "../Config/AuthContext";
 
-import HinweiseButton from "./HinweiseButton";
-import DatenschutzButton from "./DatenschutzButton";
+import HinweiseButton from "../Buttons/HinweiseButton";
+import DatenschutzButton from "../Buttons/DatenschutzButton";
 
 const Header: React.FC = () => {
   const { isAuthenticated, logout } = useAuth();

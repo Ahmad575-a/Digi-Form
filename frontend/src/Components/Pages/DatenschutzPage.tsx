@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./DatenschutzPage.css";
+import "../Styles/DatenschutzPage.css";
 
 type Section = {
   id: string;

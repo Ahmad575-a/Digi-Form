@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./RegisterForm.css";
+import "../Styles/RegisterForm.css";
 
 type Role = "" | "student" | "teacher";
 
