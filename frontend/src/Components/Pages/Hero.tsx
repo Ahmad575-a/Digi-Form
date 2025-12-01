@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
-import "./Hero.css";
-import heroImage from "../assets/heroImage.jpg";
+import "../Styles/Hero.css";
+import heroImage from "../../assets/heroImage.jpg";
 
 const Hero: React.FC = () => {
   useEffect(() => {
