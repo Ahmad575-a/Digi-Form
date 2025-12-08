@@ -1,8 +1,11 @@
 from rest_framework import viewsets, permissions, filters, mixins
+from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from django.db.models import Min, Max
+from drf_spectacular.utils import extend_schema
 
 from .models import Form, Submission
-from .serializers import FormSerializer, SubmissionSerializer
+from .serializers import FormSerializer, SubmissionSerializer, FormStatsSerializer
 from .permissions import (
     IsTeacherOrAdminOrReadOnly,
     IsOwnerOrTeacherAdmin,
@@ -76,3 +79,50 @@ class FormSubmissionListView(mixins.ListModelMixin, viewsets.GenericViewSet):
             .prefetch_related('answers', 'answers__field')
             .order_by('-submitted_at')
         )
+
+
+class FormStatisticsView(viewsets.ViewSet):
+    """
+    Aggregate statistics for a specific form.
+    - Only teachers/admins can access this endpoint.
+    - Returns counts and time range of submissions, plus per-class filtering.
+    """
+
+    permission_classes = [permissions.IsAuthenticated, IsTeacherOrAdmin]
+    serializer_class = FormStatsSerializer
+
+    @extend_schema(responses=FormStatsSerializer)
+    def retrieve(self, request, form_id=None):
+        form = get_object_or_404(Form, pk=form_id)
+
+        submissions_qs = Submission.objects.filter(form=form).select_related('user')
+
+        total_submissions = submissions_qs.count()
+        unique_students = (
+            submissions_qs.values_list('user_id', flat=True).distinct().count()
+        )
+
+        submissions_by_class = {}
+        for submission in submissions_qs:
+            user = submission.user
+            class_name = getattr(user, 'class_name', None) or "unknown"
+            submissions_by_class[class_name] = submissions_by_class.get(class_name, 0) + 1
+
+        aggregates = submissions_qs.aggregate(
+            first_submission_at=Min('submitted_at'),
+            last_submission_at=Max('submitted_at'),
+        )
+
+        data = {
+            "form_id": form.id,
+            "title": form.title,
+            "is_active": form.is_active,
+            "total_submissions": total_submissions,
+            "unique_students": unique_students,
+            "submissions_by_class": submissions_by_class,
+            "first_submission_at": aggregates["first_submission_at"],
+            "last_submission_at": aggregates["last_submission_at"],
+        }
+
+        serializer = FormStatsSerializer(data)
+        return Response(serializer.data)

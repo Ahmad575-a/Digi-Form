@@ -98,3 +98,15 @@ class SubmissionSerializer(serializers.ModelSerializer):
                 Answer.objects.create(submission=instance, **a)
 
         return instance
+
+class FormStatsSerializer(serializers.Serializer):
+    form_id = serializers.IntegerField()
+    title = serializers.CharField()
+    is_active = serializers.BooleanField()
+    total_submissions = serializers.IntegerField()
+    unique_students = serializers.IntegerField()
+    submissions_by_class = serializers.DictField(
+        child=serializers.IntegerField()
+    )
+    first_submission_at = serializers.DateTimeField(allow_null=True)
+    last_submission_at = serializers.DateTimeField(allow_null=True)
