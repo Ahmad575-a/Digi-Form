@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./LoginForm.css";
-import { useAuth } from "../Components/AuthContext";
+import "../Styles/LoginForm.css";
+import { useAuth } from "../Config/AuthContext";
 
 interface loginFormData {
   username: string;
