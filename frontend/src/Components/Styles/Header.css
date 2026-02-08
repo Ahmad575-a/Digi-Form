@@ -1,79 +1,143 @@
 .df-header {
-  width: auto;
-  background: linear-gradient(
-    90deg,
-    #f3eeebab 0%,
-    #dbcca466 50%,
-    #f3eeebab 100%
-  );
-  height: 96px;
+  height: 92px;
+  margin: 16px 1px 0 1px;
+  padding: 0 2.5rem;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 3rem;
   box-sizing: border-box;
-  border-bottom: 0.7px solid #422105b7;
+
+  border-radius: 999px;
+
+  /* Dark glass */
+  background: linear-gradient(
+    90deg,
+    rgba(8, 10, 22, 0.55) 0%,
+    rgba(18, 20, 40, 0.55) 50%,
+    rgba(8, 10, 22, 0.55) 100%
+  );
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  /* subtle edge + glow */
+  border: 1px solid rgba(170, 120, 255, 0.18);
+
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    0 0 26px rgba(170, 120, 255, 0.12);
+
+  position: relative;
+  overflow: hidden;
 }
 
+/* optional: soft chrome shimmer */
+.df-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    1200px 120px at 30% 0%,
+    rgba(255, 255, 255, 0.1),
+    transparent 55%
+  );
+  pointer-events: none;
+}
+
+/* left side layout */
 .df-left {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
-/* DigiForm-Titel */
+/* brand */
 .df-brand {
-  font-size: 2.3rem;
-  font-weight: 100;
-  color: #111827;
+  font-size: 2.2rem;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.5px;
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
-
 .df-brand:hover {
-  opacity: 0.7;
+  transform: translateY(-1px);
+  background: rgba(24, 10, 40, 0.78);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(178, 38, 229, 0.622);
 }
 
+/* links */
 .df-right {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 2.2rem;
 }
 
 .df-link {
   background: none;
   border: none;
   padding: 0;
-  font-size: 1.1rem;
+
+  font-size: 1.05rem;
   font-weight: 300;
-  color: #111827;
+  color: rgba(255, 255, 255, 0.82);
+
   cursor: pointer;
   font-family: "Courier New", Courier, monospace;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
-
 .df-link:hover {
-  text-decoration: underline;
+  transform: translateY(-1px);
+  background: rgba(24, 10, 40, 0.78);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(178, 38, 229, 0.622);
 }
 
+/* pill button */
 .df-login-pill {
-  background-color: #111827;
-  color: #ffffff;
-  border: none;
   border-radius: 999px;
-  padding: 0.9rem 3.5rem;
-  font-size: 1.2rem;
+  padding: 0.85rem 3.2rem;
+
+  background: rgba(10, 12, 24, 0.75);
+  border: 1px solid rgba(170, 120, 255, 0.22);
+
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.1rem;
   font-weight: 400;
+
   cursor: pointer;
   font-family: "Courier New", Courier, monospace;
+
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.45),
+    0 0 18px rgba(170, 120, 255, 0.1);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
 }
 
 .df-login-pill:hover {
-  background-color: #383838;
+  transform: translateY(-1px);
+  background: rgba(24, 10, 40, 0.78);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(178, 38, 229, 0.622);
 }
 
+/* logo size */
 .df-logo-img {
-  height: 220px; /* passe die Größe an deine PNG an */
-  width: auto;
+  height: auto;
+  width: 180px;
   object-fit: contain;
   display: block;
+  padding-bottom: 7px;
 }

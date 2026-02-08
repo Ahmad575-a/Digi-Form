@@ -1,0 +1,40 @@
+.dashboard-btn {
+  height: 38px; /* etwas kleiner als Ausloggen */
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  background: linear-gradient(
+    135deg,
+    rgba(124, 92, 255, 0.18),
+    rgba(91, 214, 255, 0.08)
+  );
+
+  color: #f4f4ff;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.dashboard-btn:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(124, 92, 255, 0.28),
+    rgba(91, 214, 255, 0.14)
+  );
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  transform: translateY(-1px);
+}
+
+.dashboard-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}

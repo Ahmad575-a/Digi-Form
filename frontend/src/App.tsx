@@ -3,16 +3,16 @@ import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
-import Header from "./Components/Pages/Header";
-import Hero from "./Components/Pages/Hero";
-import LoginChoice from "./Components/Pages/LoginChoice";
-import RegisterForm from "./Components/Pages/RegisterForm";
-import LoginForm from "./Components/Pages/LoginForm";
-import Dashboard from "./Components/Pages/Dashboard";
+import Header from "./Components/Sections/Header";
+import Hero from "./Components/Sections/Hero";
+import LoginChoice from "./Components/Sections/LoginChoice";
+import RegisterForm from "./Components/Sections/RegisterForm";
+import LoginForm from "./Components/Sections/LoginForm";
+import Dashboard from "./Components/Sections/Dashboard";
 import ProtectedRoute from "./Components/Config/ProtectedRoute";
 import { AuthProvider } from "./Components/Config/AuthContext";
-import HinweisePage from "./Components/Pages/HinweisePage";
-import DatenschutzPage from "./Components/Pages/DatenschutzPage";
+import HinweisePage from "./Components/Sections/HinweisePage";
+import DatenschutzPage from "./Components/Sections/DatenschutzPage";
 
 const App: React.FC = () => {
   return (

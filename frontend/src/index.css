@@ -1,5 +1,3 @@
-/* index.css */
-
 *,
 *::before,
 *::after {
@@ -7,16 +5,33 @@
 }
 
 html,
-body,
-header
-#root {
+body {
   margin: 0;
   padding: 0;
-  height: auto;
+  min-height: 100%;
   width: 100%;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
-body {
-  background-color: #ffffff;
+/* DER Hintergrund – nur einmal */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image: url("/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Content bleibt transparent */
+#root,
+main,
+.app,
+.page {
+  min-height: 100vh;
+  background: transparent;
 }
