@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/RegisterForm.css";
+import { useAuth } from "../Config/AuthContext";
 
-type Role = "" | "student" | "teacher";
+type Role = "student" | "teacher";
 
 interface RegisterFormData {
   username: string;
@@ -12,31 +13,28 @@ interface RegisterFormData {
   class_name: string;
 }
 
-const RegisterForm: React.FC = () => {
+function RegisterForm() {
   const [formData, setFormData] = useState<RegisterFormData>({
     username: "",
     email: "",
     password: "",
-    role: "",
+    role: "student", // ✅ direkt default setzen
     class_name: "",
   });
-
-  useEffect(() => {
-    document.title = "DigiForm – Registrierung";
-  }, []);
-
-  const navigate = useNavigate();
-
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
-  console.log("API_BASE_URL =", API_BASE_URL);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+  const { login } = useAuth(); // ✅ wie beim Login nutzen (einheitlich)
+
+  useEffect(() => {
+    document.title = "DigiForm – Registrierung";
+  }, []);
+
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = event.target;
 
@@ -53,26 +51,26 @@ const RegisterForm: React.FC = () => {
     setErrorMessage(null);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/register/`, {
+      // ✅ Proxy-friendly: relative URL
+      const response = await fetch("/api/auth/register/", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        // credentials meist nicht nötig bei JWT:
+        // credentials: "include",
       });
 
       if (!response.ok) {
         const text = await response.text();
-        throw new Error(text || "Registrierung fehlgeschlagen");
+        throw new Error(
+          text || `Registrierung fehlgeschlagen (${response.status})`,
+        );
       }
 
       const data = await response.json();
-      //JWT speichern
-      localStorage.setItem("access", data.access);
-      localStorage.setItem("refresh", data.refresh);
 
-      //redirect auf Dashboard
-      navigate("/dashboard");
+      // Erwartet: { access: "...", refresh: "..." }
+      login(data.access, data.refresh);
 
       setSuccessMessage("Registrierung erfolgreich.");
       setFormData({
@@ -82,10 +80,12 @@ const RegisterForm: React.FC = () => {
         role: "student",
         class_name: "",
       });
+
+      navigate("/dashboard");
     } catch (err) {
       console.error(err);
       setErrorMessage(
-        "Registrierung fehlgeschlagen. Bitte überprüfe deine Eingaben und versuche es erneut."
+        "Registrierung fehlgeschlagen. Bitte überprüfe deine Eingaben und versuche es erneut.",
       );
     } finally {
       setIsSubmitting(false);
@@ -109,6 +109,7 @@ const RegisterForm: React.FC = () => {
               value={formData.username}
               onChange={handleChange}
               required
+              autoComplete="username"
             />
           </label>
 
@@ -120,6 +121,7 @@ const RegisterForm: React.FC = () => {
               value={formData.email}
               onChange={handleChange}
               required
+              autoComplete="email"
             />
           </label>
 
@@ -131,6 +133,7 @@ const RegisterForm: React.FC = () => {
               value={formData.password}
               onChange={handleChange}
               required
+              autoComplete="new-password"
             />
           </label>
 
@@ -142,15 +145,14 @@ const RegisterForm: React.FC = () => {
                 value={formData.role}
                 onChange={handleChange}
                 className="register-select"
+                required
               >
-                <option value="" disabled hidden>
-                  Rolle auswählen…
-                </option>
                 <option value="student">Schüler:in</option>
                 <option value="teacher">Lehrer:in</option>
               </select>
             </div>
           </label>
+
           <label className="register-field">
             <span>Klassenname</span>
             <input
@@ -178,6 +180,6 @@ const RegisterForm: React.FC = () => {
       </div>
     </main>
   );
-};
+}
 
 export default RegisterForm;

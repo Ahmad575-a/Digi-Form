@@ -2,10 +2,8 @@
 
 .login-wrapper {
   min-height: 100vh;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.6),
-      rgba(255, 255, 255, 0.6)
-    ),
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
     /* halbtransparentes Overlay */ url("/background.jpg");
   background-size: cover;
   background-position: center;
@@ -125,6 +123,14 @@
   font-weight: 500;
   cursor: pointer;
   font-family: "Courier New", Courier, monospace;
+}
+
+.login-submit:hover {
+  transform: translateY(-1px);
+  background: rgba(24, 10, 40, 0.78);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(178, 38, 229, 0.9);
 }
 
 .login-submit:disabled {

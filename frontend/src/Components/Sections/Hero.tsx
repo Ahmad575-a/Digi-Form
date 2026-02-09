@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
 import "../Styles/Hero.css";
-import heroImage from "../../assets/heroImage.jpg";
+import heroImage from "../../assets/DigSig.jpg";
+import BlobSection from "./BlobSection";
 
 const Hero: React.FC = () => {
   useEffect(() => {
@@ -21,6 +22,7 @@ const Hero: React.FC = () => {
           </p>
         </div>
       </div>
+      <BlobSection />
     </section>
   );
 };

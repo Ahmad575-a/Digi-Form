@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/LoginForm.css";
 import { useAuth } from "../Config/AuthContext";
 
-interface loginFormData {
+interface LoginFormData {
   username: string;
   password: string;
 }
 
-const LoginForm: React.FC = () => {
-  const [formData, setFormData] = useState<loginFormData>({
+function LoginForm() {
+  const [formData, setFormData] = useState<LoginFormData>({
     username: "",
     password: "",
   });
@@ -17,31 +17,18 @@ const LoginForm: React.FC = () => {
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    document.title = "DigiForm – Anmeldung";
-
-    if (isAuthenticated) {
-      navigate("/dashboard");
-    }
-  }, [isAuthenticated, navigate]);
-
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
-  console.log("API_BASE_URL =", API_BASE_URL);
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = event.target;
+  useEffect(() => {
+    document.title = "DigiForm – Anmeldung";
+    if (isAuthenticated) navigate("/dashboard");
+  }, [isAuthenticated, navigate]);
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -51,35 +38,36 @@ const LoginForm: React.FC = () => {
     setErrorMessage(null);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/login/`, {
+      // ✅ Proxy-friendly: relative URL (wird von Vite zu http://localhost:8000 weitergeleitet)
+      const response = await fetch("/api/auth/login/", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        // credentials brauchst du bei JWT meist nicht – schadet aber nicht,
+        // falls dein Backend zusätzlich Cookies setzt:
+        // credentials: "include",
       });
 
       if (!response.ok) {
         const text = await response.text();
-        throw new Error(text || "Anmeldung fehlgeschlagen");
+        throw new Error(
+          text || `Anmeldung fehlgeschlagen (${response.status})`,
+        );
       }
 
       const data = await response.json();
-      //JWT speichern
+
+      // Erwartet: { access: "...", refresh: "..." }
       login(data.access, data.refresh);
 
-      //redirect auf Dashboard
-      navigate("/dashboard");
-
       setSuccessMessage("Anmeldung erfolgreich.");
-      setFormData({
-        username: "",
-        password: "",
-      });
+      setFormData({ username: "", password: "" });
+
+      navigate("/dashboard");
     } catch (err) {
       console.error(err);
       setErrorMessage(
-        "Anmeldung fehlgeschlagen. Bitte überprüfe deine Eingaben und versuche es erneut."
+        "Anmeldung fehlgeschlagen. Bitte überprüfe deine Eingaben und versuche es erneut.",
       );
     } finally {
       setIsSubmitting(false);
@@ -100,6 +88,7 @@ const LoginForm: React.FC = () => {
               value={formData.username}
               onChange={handleChange}
               required
+              autoComplete="username"
             />
           </label>
 
@@ -111,6 +100,7 @@ const LoginForm: React.FC = () => {
               value={formData.password}
               onChange={handleChange}
               required
+              autoComplete="current-password"
             />
           </label>
 
@@ -122,12 +112,12 @@ const LoginForm: React.FC = () => {
             type="submit"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Wird gesendet…" : "Anmelden"}
+            {isSubmitting ? "Wird angemeldet…" : "Anmelden"}
           </button>
         </form>
       </div>
     </main>
   );
-};
+}
 
 export default LoginForm;

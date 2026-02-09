@@ -1,8 +1,10 @@
 #root {
   margin: 0 auto;
-  display: contents;
+  display: block;
   justify-items: row;
   text-align: center;
+  color: #ffffff;
+  min-height: 100vh;
 }
 
 .logo {
@@ -39,40 +41,4 @@
 
 .read-the-docs {
   color: #888;
-}
-
-/* Gesamter Inhaltsbereich */
-.app-content {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.info-page {
-  max-width: 800px;
-  margin: 3rem auto;
-  padding: 0 1.5rem;
-  text-align: left;
-}
-
-.info-page h1 {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-weight: 400;
-}
-
-.info-image {
-  display: block;
-  max-width: 100%;
-  margin: 0 auto 2rem auto;
-  border-radius: 16px;
-}
-
-.info-text {
-  font-size: 1rem;
-  line-height: 1.6;
 }

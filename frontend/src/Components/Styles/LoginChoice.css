@@ -1,14 +1,11 @@
 .login-choice {
   min-height: 100vh;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.6),
-      rgba(255, 255, 255, 0.6)
-    ),
-    /* halbtransparentes Overlay */ url("/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+    /* halbtransparentes Overlay */ url("/background.jpg");
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,7 +52,11 @@
 }
 
 .login-btn:hover {
-  background-color: #3a3a3a;
+  transform: translateY(-1px);
+  background: rgba(24, 10, 40, 0.99);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(178, 38, 229, 0.622);
 }
 
 .logout-message {

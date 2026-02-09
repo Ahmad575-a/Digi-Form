@@ -1,10 +1,10 @@
 /* src/Components/RegisterForm.css */
 
 .register-wrapper {
-  min-height: 100vh; 
-  background: 
-    linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),  /* halbtransparentes Overlay */
-    url('/background.jpg'); 
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+    /* halbtransparentes Overlay */ url("/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -26,12 +26,14 @@
 
 .register-card h1 {
   font-size: 1.8rem;
+  font-style: normal;
   margin-bottom: 0.5rem;
+  color: #000000;
 }
 
 .register-subtitle {
   margin-bottom: 1.5rem;
-  color: #6b7280;
+  color: hsla(0, 0%, 0%, 0.935);
 }
 
 .register-form {
@@ -102,7 +104,6 @@
   box-shadow: 0 0 0 1px #1118271a;
 }
 
-
 .register-success {
   color: #16a34a;
   margin-top: 0.5rem;
@@ -123,10 +124,18 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .register-submit:disabled {
   opacity: 0.6;
   cursor: default;
+}
+
+.register-submit:hover {
+  transform: translateY(-1px);
+  background: rgba(24, 10, 40, 0.99);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(178, 38, 229, 0.622);
 }

@@ -1,0 +1,133 @@
+.blob {
+  width: var(--blob-w, 360px);
+  aspect-ratio: 3 / 4;
+
+  background:
+    radial-gradient(
+      120% 90% at 25% 20%,
+      rgba(220, 190, 255, 0.55),
+      transparent 55%
+    ),
+    radial-gradient(
+      140% 100% at 80% 85%,
+      rgba(90, 60, 180, 0.35),
+      transparent 60%
+    ),
+    linear-gradient(
+      145deg,
+      #3a3f4b 0%,
+      #6b6f82 30%,
+      #144e41 45%,
+      #6a6f8f 60%,
+      #1a1d26 100%
+    );
+
+  background-size: 200% 200%;
+  border-radius: 55% 45% 36% 64% / 62% 62% 38% 38%;
+
+  /* ✨ Glow */
+  filter: drop-shadow(0 0 25px rgba(160, 120, 255, 0.35))
+    drop-shadow(0 0 60px rgba(120, 80, 220, 0.25));
+
+  box-shadow:
+    inset 0 0 30px rgba(255, 255, 255, 0.08),
+    0 18px 45px rgba(0, 0, 0, 0.55);
+
+  animation:
+    morph 8s ease-in-out infinite,
+    metalShift 6s linear infinite,
+    glowPulse 4.5s ease-in-out infinite;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  z-index: 0;
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 22px rgba(160, 120, 255, 0.3))
+      drop-shadow(0 0 50px rgba(120, 80, 220, 0.22));
+  }
+  50% {
+    filter: drop-shadow(0 0 34px rgba(190, 150, 255, 0.45))
+      drop-shadow(0 0 80px rgba(150, 110, 255, 0.35));
+  }
+}
+
+@keyframes morph {
+  0%,
+  100% {
+    border-radius: 55% 45% 36% 64% / 62% 62% 38% 38%;
+  }
+  50% {
+    border-radius: 61% 39% 61% 39% / 29% 54% 46% 71%;
+  }
+}
+
+@keyframes metalShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.blobContent {
+  text-align: center;
+  padding: 24px;
+  max-width: 80%;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 0.4px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+
+.blob {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.blob:hover {
+  transform: translateY(-14px) scale(1.06) rotate(-1deg);
+
+  filter: drop-shadow(0 0 40px rgba(190, 150, 255, 0.55))
+    drop-shadow(0 0 100px rgba(150, 110, 255, 0.45));
+
+  box-shadow:
+    inset 0 0 40px rgba(255, 255, 255, 0.15),
+    0 30px 80px rgba(0, 0, 0, 0.7);
+}
+
+.blob::after {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  border-radius: inherit;
+
+  background: conic-gradient(
+    from 120deg,
+    transparent,
+    rgba(200, 160, 255, 0.8),
+    transparent 70%
+  );
+
+  opacity: 0;
+  filter: blur(18px);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.blob:hover::after {
+  opacity: 0.7;
+}

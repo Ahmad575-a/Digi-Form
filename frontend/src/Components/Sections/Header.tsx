@@ -1,11 +1,11 @@
 import React from "react";
 import "../Styles/Header.css";
-import logo from "../../assets/digi.svg";
+import logo from "../../assets/digi-3.svg";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Config/AuthContext";
-
 import HinweiseButton from "../Buttons/HinweiseButton";
 import DatenschutzButton from "../Buttons/DatenschutzButton";
+import DashboardButton from "../Buttons/DashboardButton";
 
 const Header: React.FC = () => {
   const { isAuthenticated, logout } = useAuth();
@@ -32,6 +32,7 @@ const Header: React.FC = () => {
       <div className="df-right">
         <HinweiseButton />
         <DatenschutzButton />
+        <DashboardButton />
         <button
           className="df-login-pill"
           type="button"

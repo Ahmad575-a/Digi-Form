@@ -1,0 +1,49 @@
+.blobSection {
+  padding: 0 80px 80px;
+  margin-top: 120px;
+  display: flex;
+  justify-content: center;
+}
+
+.blobRow {
+  display: grid;
+  gap: clamp(32px, 6vw, 120px);
+
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  width: fit-content;
+  margin: 0 auto;
+  justify-content: center;
+  justify-items: center;
+}
+
+.blobCard {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.blobCard h3 {
+  margin: 18px 0 8px;
+  font-size: 50px;
+  letter-spacing: 0.5px;
+}
+
+.blobCard p {
+  margin: 0;
+  max-width: 28ch;
+  line-height: 1.5;
+  font-size: 20px;
+}
+
+/* Responsive: auf kleineren Screens untereinander */
+
+@media (max-width: 1100px) {
+  .blobRow {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .blobRow {
+    grid-template-columns: 1fr;
+  }
+}
